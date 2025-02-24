@@ -148,7 +148,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                         </DialogFooter>
                     </form>
                 </DialogContent>
-                
             </Dialog>
         </div>
     )
