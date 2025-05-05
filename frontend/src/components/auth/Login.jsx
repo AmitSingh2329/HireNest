@@ -67,7 +67,7 @@ const Login = () => {
         transition={{ duration: 0.5 }}
       >
         <motion.div
-          className="w-full max-w-md p-8 bg-gray-900 border-gray-700 shadow-lg rounded-lg border border-gray-600"
+          className="w-full max-w-md p-8 bg-gray-900 shadow-lg rounded-lg border border-gray-600"
           initial={{ y: 50 }}
           animate={{ y: 0 }}
           transition={{ type: "spring", stiffness: 100 }}
