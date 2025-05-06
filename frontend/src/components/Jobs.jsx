@@ -1,63 +1,89 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from './shared/Navbar'
-import FilterCard from './FilterCard'
+import React, { useEffect, useState } from 'react';
+import Navbar from './shared/Navbar';
+import FilterCard from './FilterCard';
 import Job from './Job';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
-// const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8];
-
 const Jobs = () => {
     const { allJobs, searchedQuery } = useSelector(store => store.job);
-    const [filterJobs, setFilterJobs] = useState(allJobs);
+    const [filteredJobs, setFilteredJobs] = useState([]);
+    const [showFilters, setShowFilters] = useState(false); // State to control filter card visibility
 
     useEffect(() => {
         if (searchedQuery) {
-            const filteredJobs = allJobs.filter((job) => {
-                return job.title.toLowerCase().includes(searchedQuery.toLowerCase()) ||
-                    job.description.toLowerCase().includes(searchedQuery.toLowerCase()) ||
-                    job.location.toLowerCase().includes(searchedQuery.toLowerCase())
-            })
-            setFilterJobs(filteredJobs)
+            const queryWords = searchedQuery.toLowerCase().split(" ");
+            const filtered = allJobs.filter(job => {
+                const searchFields = [
+                    job.title,
+                    job.description,
+                    job.requirements?.join(" "), // Join requirements array into a single string
+                    job.location
+                ];
+                return queryWords.some(word =>
+                    searchFields.some(field => field?.toLowerCase().includes(word))
+                );
+            });
+            setFilteredJobs(filtered);
         } else {
-            setFilterJobs(allJobs)
+            setFilteredJobs(allJobs);
         }
     }, [allJobs, searchedQuery]);
 
     return (
-        <div>
+        <div className="bg-gray-100 min-h-screen">
             <Navbar />
-            <div className='max-w-7xl mx-auto mt-5'>
-                <div className='flex gap-5'>
-                    <div className='w-20%'>
+            <div className="max-w-7xl mx-auto pt-20 bg-gradient-to-br from-[#00040A] to-[#001636]">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                    <div className="lg:hidden w-full">
+                        <button
+                            onClick={ () => setShowFilters(!showFilters) }
+                            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md mb-4"
+                        >
+                            { showFilters ? 'Hide Filters' : 'Show Filters' }
+                        </button>
+                    </div>
+                    {/* Filter Sidebar */ }
+                    <div className={ `lg:block ${showFilters ? 'block' : 'hidden'} lg:col-span-1` }>
                         <FilterCard />
                     </div>
-                    {
-                        filterJobs.length <= 0 ? <span>Job not found</span> : (
-                            <div className='flex-1 h-[88vh] overflow-y-auto pb-5'>
-                                <div className='grid grid-cols-3 gap-4'>
-                                    {
-                                        filterJobs.map((job) => (
-                                            <motion.div
-                                                initial={{ opacity: 0, x: 100 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                exit={{ opacity: 0, x: -100 }}
-                                                transition={{ duration: 0.3 }}
-                                                key={job?._id}>
-                                                <Job job={job} />
-                                            </motion.div>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-                        )
-                    }
+
+                    {/* Button to toggle filter card on small screens */ }
+
+
+                    {/* Main Job List Section */ }
+                    <div className="lg:col-span-3">
+                        <motion.div
+                            className="grid grid-cols-1 gap-8"
+                            initial={ { opacity: 0 } }
+                            animate={ { opacity: 1 } }
+                            transition={ { duration: 0.5 } }
+                        >
+                            { filteredJobs.length > 0 ? (
+                                filteredJobs.map((job) => (
+                                    <motion.div
+                                        key={ job?._id }
+                                        layout
+                                        initial={ { opacity: 0, y: 50 } }
+                                        animate={ { opacity: 1, y: 0 } }
+                                        transition={ {
+                                            type: 'spring',
+                                            stiffness: 200,
+                                            damping: 20
+                                        } }
+                                    >
+                                        <Job job={ job } />
+                                    </motion.div>
+                                ))
+                            ) : (
+                                <span className="text-blue-600 font-bold">No jobs found</span>
+                            ) }
+                        </motion.div>
+                    </div>
                 </div>
             </div>
-
-
         </div>
-    )
-}
+    );
+};
 
-export default Jobs
+export default Jobs;
