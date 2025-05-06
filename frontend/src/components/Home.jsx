@@ -8,7 +8,6 @@ import Footer from './shared/Footer';
 import useGetAllJobs from '@/hooks/useGetAllJobs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import ChatBoat from './ChatBoat';
 
 const Home = () => {
   useGetAllJobs();
@@ -38,7 +37,6 @@ const Home = () => {
         <LatestJobs />
         <Footer />
       </div>
-      <ChatBoat />
     </motion.div>
   );
 };
