@@ -1,70 +1,91 @@
-import React from "react";
-import { Button } from "../ui/button";
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-12">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Column 1 - Company Info */}
+    <footer className="bg-[#00040A] text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* About Section */ }
           <div>
-            <h2 className="text-2xl font-semibold mb-4">JobPortal</h2>
+            <h3 className="text-lg font-semibold mb-4 text-[#535bf2]">About HireHub</h3>
             <p className="text-gray-400">
-              Find the perfect job and grow your career with us. We provide the best job listings and resources.
+              Connecting talented professionals with innovative companies worldwide.
             </p>
           </div>
-
-          {/* Column 2 - Quick Links */}
+          {/* Quick Links Section */ }
           <div>
-            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-[#535bf2]">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white">Home</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Jobs</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Post a Job</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Contact Us</a></li>
+              <li>
+                <Link to="/jobs" className="hover:text-[#535bf2] transition">
+                  Find Jobs
+                </Link>
+              </li>
+              <li>
+                <Link to="/companies" className="hover:text-[#535bf2] transition">
+                  Companies
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-[#535bf2] transition">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-[#535bf2] transition">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
-
-          {/* Column 3 - Contact */}
+          {/* Resources Section */ }
           <div>
-            <h3 className="text-xl font-semibold mb-4">Contact</h3>
-            <p className="text-gray-400 mb-4">Email: support@jobportal.com</p>
-            <p className="text-gray-400">Phone: (123) 456-7890</p>
+            <h3 className="text-lg font-semibold mb-4 text-[#535bf2]">Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/jobs" className="hover:text-[#535bf2] transition">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/help" className="hover:text-[#535bf2] transition">
+                  Help Center
+                </Link>
+              </li>
+              <li>
+                <Link to="/careers" className="hover:text-[#535bf2] transition">
+                  Careers
+                </Link>
+              </li>
+            </ul>
+          </div>
+          {/* Connect With Us Section */ }
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-[#535bf2]">Connect With Us</h3>
+            <div className="flex space-x-4">
+              <a href="#" className="hover:text-[#535bf2] transition" aria-label="Facebook">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="#" className="hover:text-[#535bf2] transition" aria-label="Twitter">
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a href="#" className="hover:text-[#535bf2] transition" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="#" className="hover:text-[#535bf2] transition" aria-label="Instagram">
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
-
-        <div className="mt-12 border-t border-gray-700 pt-8">
-          <div className="flex justify-between items-center">
-            {/* Social Media Icons (Example) */}
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-
-            {/* Newsletter Section */}
-            <div className="flex items-center space-x-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 bg-gray-700 text-white rounded-md"
-              />
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
-                Subscribe
-              </Button>
-            </div>
-          </div>
+        {/* Footer Bottom */ }
+        <div className="mt-8 pt-8 border-t border-gray-800">
+          <p className="text-center text-gray-400">
+            © { new Date().getFullYear() } HireHub. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
