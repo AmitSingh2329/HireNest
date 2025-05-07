@@ -88,7 +88,7 @@ const Login = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <Label htmlFor="email" className="block text-gray-200 text-lg">
+              <Label htmlFor="email" className="block text-white text-lg">
                 Email Address <span className="text-red-400">*</span>
               </Label>
               <Input
@@ -107,7 +107,7 @@ const Login = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <Label htmlFor="password" className="block text-gray-200 text-lg">
+              <Label htmlFor="password" className="block text-white text-lg">
                 Password <span className="text-red-400">*</span>
               </Label>
               <Input
