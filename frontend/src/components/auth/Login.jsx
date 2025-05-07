@@ -88,17 +88,17 @@ const Login = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <Label htmlFor="email" className="block text-white text-lg">
+              <Label htmlFor="email" className="block text-gray-200 text-lg">
                 Email Address <span className="text-red-400">*</span>
               </Label>
               <Input
                 id="email"
                 placeholder="john.doe@gmail.com"
                 type="email"
-                className="mt-1 p-3 border bg-transparent border-gray-500 rounded-md outline-none focus:border-blue-500 transition-all w-full"
-                value={input.email}
                 name="email"
+                value={input.email}
                 onChange={changeEventHandler}
+                className="text-white bg-gray-800 border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
               />
             </motion.div>
             <motion.div
@@ -107,17 +107,17 @@ const Login = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <Label htmlFor="password" className="block text-white text-lg">
+              <Label htmlFor="password" className="block text-gray-200 text-lg">
                 Password <span className="text-red-400">*</span>
               </Label>
               <Input
                 id="password"
                 placeholder="********"
                 type="password"
-                className="mt-1 p-3 border bg-transparent border-gray-500 rounded-md outline-none focus:border-blue-500 transition-all w-full"
-                value={input.password}
                 name="password"
+                value={input.password}
                 onChange={changeEventHandler}
+                className="text-white bg-gray-800 border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
               />
             </motion.div>
 
